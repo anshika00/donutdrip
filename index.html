@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="logo.png">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="theme-color" content="#1A0800"/>
+<title>Donut Drip — Handcrafted Treats · Karnal</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,900;1,700;1,900&family=Caveat:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:      #1A0800;
+  --dark:    #240C02;
+  --mid:     #3A1808;
+  --nutella: #6B3210;
+  --caramel: #C97B2E;
+  --gold:    #E8A942;
+  --cream:   #FDF1DC;
+  --white:   #FFFDF7;
+  --pink:    #F2A7B3;
+  --mint:    #A8D8C8;
+  --sky:     #A8C8E8;
+  --lemon:   #F5D76E;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  font-family:'DM Sans',sans-serif;
+  color:var(--cream);
+  overflow-x:hidden;
+  max-width:480px;
+  margin:0 auto;
+  min-height:100svh;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:60px 28px 48px;
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 0%, rgba(201,123,46,.25) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 40% at 20% 100%, rgba(107,50,16,.2) 0%, transparent 55%),
+    var(--bg);
+}
+
+/* animated drips */
+.drip{
+  position:absolute;top:0;border-radius:0 0 5px 5px;
+  animation:drip-down 7s ease-in infinite;
+  opacity:0;
+}
+.drip:nth-child(1){width:5px;left:18%;background:linear-gradient(180deg,rgba(232,169,66,.4),transparent);animation-delay:.5s;}
+.drip:nth-child(2){width:7px;left:42%;background:linear-gradient(180deg,rgba(232,169,66,.35),transparent);animation-delay:2.2s;}
+.drip:nth-child(3){width:4px;left:65%;background:linear-gradient(180deg,rgba(201,123,46,.4),transparent);animation-delay:1.1s;}
+.drip:nth-child(4){width:6px;left:82%;background:linear-gradient(180deg,rgba(232,169,66,.3),transparent);animation-delay:3.4s;}
+@keyframes drip-down{
+  0%{height:0;opacity:0;transform:translateY(0);}
+  15%{opacity:1;}
+  100%{height:220px;opacity:0;transform:translateY(100svh);}
+}
+
+/* logo donut SVG */
+/*
+.hero-logo{
+  margin-bottom:20px;
+  animation:pop-in .7s .1s cubic-bezier(.34,1.56,.64,1) both;
+  filter:drop-shadow(0 12px 32px rgba(212,105,30,.55));
+}
+@keyframes pop-in{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
+*/
+
+.hero-logo{
+  margin-bottom: 20px;
+  animation: pop-in .7s .1s cubic-bezier(.34,1.56,.64,1) both;
+  filter: drop-shadow(0 12px 32px rgba(212,105,30,0.45)); /* Added a soft glow */
+}
+
+.hero-logo img {
+  width: 280px; /* Adjust size as needed */
+  height: 140px;
+  display: block;
+}
+
+.hero-name{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:clamp(4.5rem,22vw,7rem);
+  line-height:.82;letter-spacing:-2px;
+  animation:slide-up .7s .25s ease both;
+}
+.hero-name .n1{color:var(--cream);display:block;}
+.hero-name .n2{color:var(--gold);display:block;}
+
+.hero-tagline{
+  font-family:'Caveat',cursive;font-weight:700;font-size:1.25rem;
+  color:var(--caramel);margin-top:14px;letter-spacing:.5px;
+  animation:slide-up .7s .4s ease both;
+}
+
+.hero-sub{
+  font-family:'DM Sans',sans-serif;font-size:.82rem;
+  color:rgba(253,241,220,.38);letter-spacing:2.5px;text-transform:uppercase;
+  margin-top:6px;
+  animation:slide-up .7s .5s ease both;
+}
+
+@keyframes slide-up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* open badge */
+.open-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(232,169,66,.12);
+  border:1.5px solid rgba(232,169,66,.3);
+  border-radius:30px;padding:8px 20px;
+  margin-top:22px;
+  animation:slide-up .7s .6s ease both;
+}
+.open-dot{width:8px;height:8px;border-radius:50%;background:#5EE87A;box-shadow:0 0 8px #5EE87A;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(.8);}}
+.open-text{font-family:'Caveat',cursive;font-size:.95rem;color:var(--cream);letter-spacing:.5px;}
+
+/* scroll cue */
+.scroll-cue{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  font-family:'Caveat',cursive;font-size:.75rem;letter-spacing:2px;
+  color:rgba(253,241,220,.25);text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:fade-in 1s 1.2s ease both;
+}
+.scroll-arrow{width:1px;height:28px;background:linear-gradient(180deg,transparent,rgba(232,169,66,.4));margin:0 auto;}
+@keyframes fade-in{from{opacity:0;}to{opacity:1;}}
+
+/* ── MARQUEE ── */
+.mq{
+  overflow:hidden;background:var(--gold);padding:10px 0;
+}
+.mq-logo {
+  height: 24px;       /* Adjust size to match your text height */
+  width: auto;
+  vertical-align: middle; /* Ensures it sits on the same line as text */
+  margin-left:-2px;   /* Adds space between 'Delicious' and the logo */
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  /* filter: brightness(0); */ <--- DELETE OR COMMENT THIS LINE 
+}
+.mq-logo1 {
+  height: 1.2em !important; /* Forces the logo to scale exactly to the text size */
+  width: auto;
+  margin-left: -5px !important; /* Aggressive negative margin to close the gap */
+  display: inline-block !important;
+  vertical-align: middle;
+  padding: 0 !important;
+  border: none !important;
+}
+.mq-inner{
+  display:flex;gap:18px;white-space:nowrap;
+  width: max-content;animation:marquee 10s linear infinite;
+}
+.mq-inner span{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:1rem;color:var(--dark);
+}
+.mq-inner .dot{opacity:.3;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── MENU SECTION ── */
+.menu-section{padding:52px 20px;}
+
+.sec-label{
+  font-family:'Caveat',cursive;font-size:.82rem;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:6px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:rgba(232,169,66,.15);}
+
+.sec-title{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:2.2rem;line-height:.95;text-align:center;
+  margin-bottom:32px;color:var(--cream);
+}
+
+/* menu cards */
+.mcard{
+  background:var(--dark);
+  border-radius:22px;
+  margin-bottom:14px;
+  overflow:hidden;
+  border:1px solid rgba(232,169,66,.07);
+  transition:transform .25s,box-shadow .25s;
+  position:relative;
+}
+.mcard:active{transform:scale(.98);}
+.mcard-top-bar{height:3.5px;}
+.mcard-top-bar.choco{background:linear-gradient(90deg,#3A1808,#C97B2E,#3A1808);}
+.mcard-top-bar.nutella{background:linear-gradient(90deg,#C97B2E,#E8A942,#C97B2E);}
+.mcard-top-bar.mix{background:linear-gradient(90deg,#3A1808,#E8A942,#3A1808);}
+
+.mcard-body{
+  display:flex;align-items:center;gap:16px;
+  padding:20px 18px 18px;
+}
+.mcard-emoji{
+  font-size:2.8rem;flex-shrink:0;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.3));
+  animation:gentle-float 4s ease-in-out infinite;
+}
+.mcard:nth-child(2) .mcard-emoji{animation-delay:.8s;}
+.mcard:nth-child(3) .mcard-emoji{animation-delay:1.6s;}
+@keyframes gentle-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+.mcard-info{flex:1;}
+.mcard-name{
+  font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;
+  margin-bottom:3px;color:var(--cream);line-height:1.1;
+}
+.mcard-desc{
+  font-size:.76rem;color:rgba(253,241,220,.45);line-height:1.5;
+  margin-bottom:6px;
+}
+.mcard-tag{
+  display:inline-block;
+  background:rgba(232,169,66,.1);border:1px solid rgba(232,169,66,.18);
+  border-radius:10px;padding:2px 9px;
+  font-family:'Caveat',cursive;font-size:.7rem;color:var(--gold);letter-spacing:.5px;
+}
+.mcard-price{
+  text-align:right;flex-shrink:0;
+}
+.price-rs{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:2rem;color:var(--gold);display:block;line-height:1;
+}
+.price-unit{
+  font-size:.68rem;color:rgba(253,241,220,.3);
+  letter-spacing:1px;text-transform:uppercase;
+}
+
+/* packaging add-on */
+.pkg-strip{
+  display:flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,var(--mid),#4A1F00);
+  border-radius:16px;padding:16px 18px;
+  margin-top:6px;
+  border:1px solid rgba(232,169,66,.1);
+}
+.pkg-icon{font-size:1.8rem;flex-shrink:0;}
+.pkg-text h4{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;margin-bottom:2px;}
+.pkg-text p{font-size:.72rem;color:rgba(253,241,220,.4);line-height:1.4;}
+.pkg-price{
+  margin-left:auto;flex-shrink:0;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:1.4rem;color:var(--gold);
+}
+
+/* ── INFO STRIP ── */
+.info-strip{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  padding:0 20px 16px;
+}
+.info-card{
+  background:var(--mid);border-radius:16px;padding:16px 14px;
+  text-align:center;
+  border:1px solid rgba(232,169,66,.07);
+}
+.info-card .ic-icon{font-size:1.6rem;margin-bottom:6px;display:block;}
+.info-card h4{font-family:'Fraunces',serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--cream);}
+.info-card p{font-size:.72rem;color:rgba(253,241,220,.4);line-height:1.4;}
+
+/* ── ABOUT SECTION ── */
+.about-section{
+  padding:44px 20px;
+  background:var(--mid);
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.about-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 100% 70% at 50% 100%,rgba(201,123,46,.08),transparent);
+}
+.about-title{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:1.8rem;color:var(--cream);margin-bottom:16px;position:relative;
+}
+.about-text{
+  font-size:.85rem;color:rgba(253,241,220,.55);line-height:1.9;
+  position:relative;max-width:360px;margin:0 auto;
+}
+.about-text strong{color:var(--cream);}
+
+/* ── THANK YOU SECTION ── */
+.ty-section{
+  padding:44px 20px;
+  background:var(--cream);color:var(--dark);
+}
+.ty-card{
+  background:var(--white);
+  border-radius:20px;padding:28px 24px;
+  text-align:center;
+  box-shadow:0 12px 40px rgba(42,16,4,.12);
+  position:relative;overflow:hidden;
+}
+.ty-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--mid),var(--caramel),var(--gold),var(--caramel),var(--mid));
+}
+.ty-confetti-row{display:flex;justify-content:center;gap:5px;margin-bottom:14px;}
+.ty-dot{width:7px;height:7px;border-radius:50%;}
+.ty-logo-text{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:1.4rem;color:var(--dark);margin-bottom:14px;
+}
+.ty-logo-text span{color:#C97B2E;}
+.ty-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(107,50,16,.15),transparent);margin:14px 0;}
+.ty-message{
+  font-size:.85rem;color:rgba(42,16,4,.62);line-height:1.95;font-style:italic;
+}
+.ty-message strong{color:var(--dark);font-style:normal;}
+.ty-sign{
+  font-family:'Caveat',cursive;font-size:1.05rem;font-weight:700;
+  color:var(--nutella);margin-top:14px;line-height:1.6;
+}
+.ty-footer-row{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:16px;padding-top:14px;
+  border-top:1px solid rgba(107,50,16,.08);
+}
+.ty-small{font-family:'Caveat',cursive;font-size:.78rem;color:rgba(42,16,4,.35);letter-spacing:.5px;line-height:1.7;}
+.ty-hash{font-family:'Caveat',cursive;font-size:.85rem;font-weight:700;color:var(--caramel);}
+
+/* ── INSTAGRAM CTA ── */
+.ig-cta{
+  padding:52px 20px;
+  text-align:center;
+  background:var(--bg);
+}
+.ig-handle{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:2rem;color:var(--gold);margin-bottom:8px;
+}
+.ig-sub{
+  font-family:'Caveat',cursive;font-size:.9rem;
+  color:rgba(253,241,220,.35);letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:24px;line-height:1.6;
+}
+.ig-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+  border-radius:16px;padding:14px 28px;
+  font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;
+  color:#fff;text-decoration:none;
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
+  transition:transform .2s,box-shadow .2s;
+}
+.ig-btn:active{transform:scale(.97);}
+
+/* hashtag chips */
+.hash-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;}
+.hchip{
+  background:rgba(232,169,66,.08);border:1px solid rgba(232,169,66,.15);
+  border-radius:20px;padding:5px 14px;
+  font-family:'Caveat',cursive;font-size:.85rem;color:var(--cream);
+}
+.hchip.big{
+  background:rgba(232,169,66,.18);border-color:rgba(232,169,66,.4);
+  color:var(--gold);font-weight:700;font-size:.9rem;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);
+  text-align:center;
+  padding:44px 20px 56px;
+  border-top:1px solid rgba(232,169,66,.06);
+}
+.ft-name{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:3rem;line-height:.85;margin-bottom:10px;
+}
+.ft-name .f1{color:var(--cream);display:block;}
+.ft-name .f2{color:var(--gold);display:block;}
+.ft-tl{font-family:'Caveat',cursive;font-size:.95rem;color:rgba(253,241,220,.3);letter-spacing:2px;margin-bottom:6px;}
+.ft-loc{font-size:.75rem;color:rgba(253,241,220,.2);letter-spacing:1px;line-height:1.8;}
+
+/* ── UTILS ── */
+.divider-line{height:1px;background:linear-gradient(90deg,transparent,rgba(232,169,66,.1),transparent);margin:0 20px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="drip"></div><div class="drip"></div>
+  <div class="drip"></div><div class="drip"></div>
+
+  <!-- Logo SVG -->
+  <div class="hero-logo">
+    <img src="logo_bg.png" alt="Donut Drip Logo">
+  </div>
+
+  <h1 class="hero-name">
+    <span class="n1">Donut</span>
+    <span class="n2">Drip</span>
+  </h1>
+  <p class="hero-tagline"><br>Hole-y Delicious <img src="logo_1bg.png" class="mq-logo" alt="Logo"></p>
+  <p class="hero-sub">Handcrafted Treats · Karnal</p>
+
+  <div class="open-badge">
+    <div class="open-dot"></div>
+    <span class="open-text">Open every-night · 8–11 PM · Karan Gate</span>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="scroll-cue">
+    <span>See our menu</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-inner">
+    <span>Donut Drip</span><span class="dot">·</span>
+    <span>Hole-y Delicious</span><span class="dot">·</span>
+    <span>Handcrafted Treats</span><span class="dot">·</span>
+    <span>Karan Gate, Karnal</span><span class="dot">·</span>
+    <span>8–11 PM</span><span class="dot">·</span>
+    <span>#catchthedrip</span><span class="dot">·</span>
+    <span><img src="logo_1bg.png" class="mq-logo" alt="Logo"><span class="dot">·</span>
+    <span>Donut Drip</span><span class="dot">·</span>
+    <span>Hole-y Delicious</span><span class="dot">·</span>
+    <span>Handcrafted Treats</span><span class="dot">·</span>
+    <span>Karan Gate, Karnal</span><span class="dot">·</span>
+    <span>8–11 PM</span><span class="dot">·</span>
+    <span>#catchthedrip</span><span class="dot">·</span>
+    <span><img src="logo_1bg.png" class="mq-logo" alt="Logo"> <span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ═══════════ MENU ═══════════ -->
+<section class="menu-section">
+  <div class="sec-label">Tonight's Menu</div>
+  <h2 class="sec-title">Fresh. Glazed.<br/>Two in every box.</h2>
+
+  <!-- Chocolate -->
+  <div class="mcard">
+    <div class="mcard-top-bar choco"></div>
+    <div class="mcard-body">
+      <div class="mcard-emoji">🍫</div>
+      <div class="mcard-info">
+        <div class="mcard-name">Chocolate Confetti</div>
+        <div class="mcard-desc">Two chocolate glazed doughnuts<br/>Rainbow confetti · Fresh tonight</div>
+        <div class="mcard-tag">2 in a box</div>
+      </div>
+      <div class="mcard-price">
+        <span class="price-rs">₹80</span>
+        <span class="price-unit">per box</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nutella -->
+  <div class="mcard">
+    <div class="mcard-top-bar nutella"></div>
+    <div class="mcard-body">
+      <div class="mcard-emoji">🍯</div>
+      <div class="mcard-info">
+        <div class="mcard-name">Nutella Dream</div>
+        <div class="mcard-desc">Two Nutella drizzled doughnuts<br/>Rainbow confetti · Fan favourite</div>
+        <div class="mcard-tag">2 in a box</div>
+      </div>
+      <div class="mcard-price">
+        <span class="price-rs">₹100</span>
+        <span class="price-unit">per box</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mix -->
+  <div class="mcard">
+    <div class="mcard-top-bar mix"></div>
+    <div class="mcard-body">
+      <div class="mcard-emoji">🎉</div>
+      <div class="mcard-info">
+        <div class="mcard-name">The Mix Box</div>
+        <div class="mcard-desc">One Chocolate + One Nutella<br/>Best of both worlds</div>
+        <div class="mcard-tag">⭐ Best seller</div>
+      </div>
+      <div class="mcard-price">
+        <span class="price-rs">₹90</span>
+        <span class="price-unit">per box</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Packaging -->
+  <!-- 
+  <div class="pkg-strip">
+    <div class="pkg-icon">📦</div>
+    <div class="pkg-text">
+      <h4>Gift Packaging</h4>
+      <p>Premium box · Perfect for gifting</p>
+    </div>
+    <div class="pkg-price">+₹5</div>
+  </div>
+  -->
+  
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-card">
+    <span class="ic-icon">⏰</span>
+    <h4>8 – 11 PM</h4>
+    <p>Every evening<br/>Fresh batch daily</p>
+  </div>
+  <div class="info-card">
+    <span class="ic-icon">📍</span>
+    <h4>Karan Gate</h4>
+    <p>Near Petrol Pump<br/>Karnal</p>
+  </div>
+  <div class="info-card">
+    <span class="ic-icon"><img src="logo_1bg.png" class="mq-logo" alt="Logo"></span>
+    <h4>Limited Packs</h4>
+    <p>Made fresh daily<br/>Limited quantity</p>
+  </div>
+  <div class="info-card">
+    <span class="ic-icon">✨</span>
+    <h4>Handcrafted</h4>
+    <p>Made with love<br/>Every single day</p>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about-section">
+  <h2 class="about-title">Made fresh.<br/>Every day.</h2>
+  <p class="about-text">
+    Every doughnut at <strong>Donut Drip</strong> is handcrafted the same evening you eat it.
+    Real Nutella. Real chocolate sauce. Rainbow confetti on every single one.
+    <br/><br/>
+    We believe <strong>good things deserve to drip.</strong>
+    Find us at Karan Gate, every evening from 8 PM.
+  </p>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- ═══════════ THANK YOU ═══════════ -->
+<section class="ty-section">
+  <div style="text-align:center;margin-bottom:20px;">
+    <p style="font-family:'Caveat',cursive;font-size:.82rem;letter-spacing:3px;text-transform:uppercase;color:var(--nutella);margin-bottom:6px;">A little note from us</p>
+    <h2 style="font-family:'Fraunces',serif;font-weight:900;font-size:1.7rem;color:var(--dark);line-height:1.1;">
+  With love &amp;<br/>
+  <span style="display: inline-flex; align-items: center;">sprinkles<img src="logo_bg.png" class="mq-logo1" alt="Logo"></span>
+</h2>
+  </div>
+
+  <div class="ty-card">
+    <div class="ty-confetti-row">
+      <div class="ty-dot" style="background:#F2A7B3;"></div>
+      <div class="ty-dot" style="background:#E8A942;"></div>
+      <div class="ty-dot" style="background:#A8D8C8;"></div>
+      <div class="ty-dot" style="background:#F5D76E;"></div>
+      <div class="ty-dot" style="background:#A8C8E8;"></div>
+      <div class="ty-dot" style="background:#F2A7B3;"></div>
+      <div class="ty-dot" style="background:#E8A942;"></div>
+    </div>
+
+    <div class="ty-logo-text">Donut <span>Drip</span> <img src="logo_1bg.png" class="mq-logo" alt="Logo"></div>
+
+    <div class="ty-divider"></div>
+
+    <p class="ty-message">
+      <em>"You made it through the day —<br/>
+      <strong>you deserve the Drip!</strong></em><br/><br/>
+      Thank you for stopping by! We hope you love
+      eating these as much as we loved making them.<br/><br/>
+      <em>May your night be <strong>Hole-y Wonderful.</strong> ✨"</em>
+    </p>
+
+    <p class="ty-sign">— with love and sprinkles,<br/>Team Donut Drip   <img src="logo_1bg.png" class="mq-logo" alt="Logo"></p>
+
+    <div class="ty-divider"></div>
+
+    <div class="ty-footer-row">
+      <div>
+        <div class="ty-small"><img src="logo_bg.png" class="mq-logo1" alt="Logo">@donutdripkarnal</div>
+        <div class="ty-small">📍 Karan Gate, Karnal</div>
+      </div>
+      <div class="ty-hash">#catchthedrip</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INSTAGRAM CTA ═══════════ -->
+<section class="ig-cta">
+  <div class="ig-handle">@donutdripkarnal</div>
+  <p class="ig-sub">Follow us for daily drops<br/>stories · reels · sold out posts</p>
+
+  <a class="ig-btn" href="https://instagram.com/donutdripkarnal" target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/>
+      <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
+      <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+    </svg>
+    Follow on Instagram
+  </a>
+
+  <div class="hash-row">
+    <div class="hchip big">#catchthedrip</div>
+    <div class="hchip">#donutdrip</div>
+    <div class="hchip">#karnalfood</div>
+    <div class="hchip">#holeydelicious</div>
+    <div class="hchip">#handcraftedtreats</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-name">
+    <span class="f1">Donut</span>
+    <span class="f2">Drip <img src="logo_1bg.png" class="mq-logo" alt="Logo"></span>
+  </div>
+  <p class="ft-tl">Hole-y Delicious · Handcrafted Treats</p>
+  <p class="ft-loc">Near Petrol Pump, Karan Gate, Karnal<br/>Open every evening · 8–11 PM<br/>@donutdripkarnal · #catchthedrip</p>
+</footer>
+
+</body>
+</html>
