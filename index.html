@@ -36,6 +36,126 @@ body{
   min-height:100svh;
 }
 
+/* ── COUNTDOWN TIMER ── */
+.timer-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+  margin-bottom:44px;
+  margin-top:-10px;
+  position:relative;
+}
+.timer-eyebrow{
+  font-family:'Caveat',cursive;
+  font-size:.78rem;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(232,169,66,.5);
+}
+.timer-label{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:900;
+  font-size:1.6rem;
+  line-height:1;
+  color:var(--cream);
+  text-align:center;
+  animation:label-glow 3s ease-in-out infinite;
+}
+@keyframes label-glow{
+  0%,100%{text-shadow:none;}
+  50%{text-shadow:0 0 30px rgba(232,169,66,.4),0 0 60px rgba(232,169,66,.15);}
+}
+#countdown{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.cd-block{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+.cd-num{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:900;
+  font-size:3.2rem;
+  line-height:1;
+  color:var(--gold);
+  min-width:68px;
+  text-align:center;
+  background:linear-gradient(160deg,rgba(232,169,66,.13),rgba(232,169,66,.04));
+  border:1.5px solid rgba(232,169,66,.28);
+  border-radius:16px;
+  padding:10px 12px 8px;
+  animation:num-breathe 3s ease-in-out infinite;
+}
+@keyframes num-breathe{
+  0%,100%{border-color:rgba(232,169,66,.2);}
+  50%{border-color:rgba(232,169,66,.5);}
+}
+.cd-unit{
+  font-family:'Caveat',cursive;
+  font-size:.72rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(253,241,220,.3);
+}
+.cd-sep{
+  font-family:'Fraunces',serif;
+  font-weight:900;
+  font-size:2rem;
+  color:rgba(232,169,66,.25);
+  margin-top:-18px;
+  animation:sep-blink 1s step-end infinite;
+}
+@keyframes sep-blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.timer-tagline{
+  font-family:'Caveat',cursive;
+  font-size:.88rem;
+  color:rgba(253,241,220,.3);
+  letter-spacing:1.5px;
+  font-style:italic;
+}
+.cd-live{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.cd-live-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(94,232,122,.12);
+  border:1.5px solid rgba(94,232,122,.4);
+  border-radius:30px;
+  padding:10px 24px;
+}
+.cd-live-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#5EE87A;
+  animation:pulse 1.2s ease-in-out infinite;
+}
+.cd-live-text{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:900;
+  font-size:1.1rem;
+  color:var(--cream);
+  letter-spacing:.5px;
+}
+.cd-live-sub{
+  font-family:'Caveat',cursive;
+  font-size:.85rem;
+  color:rgba(94,232,122,.6);
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
 /* ── HERO ── */
 .hero{
   min-height:100svh;
@@ -50,7 +170,6 @@ body{
     var(--bg);
 }
 
-/* animated drips */
 .drip{
   position:absolute;top:0;border-radius:0 0 5px 5px;
   animation:drip-down 7s ease-in infinite;
@@ -66,27 +185,17 @@ body{
   100%{height:220px;opacity:0;transform:translateY(100svh);}
 }
 
-/* logo donut SVG */
-/*
-.hero-logo{
-  margin-bottom:20px;
-  animation:pop-in .7s .1s cubic-bezier(.34,1.56,.64,1) both;
-  filter:drop-shadow(0 12px 32px rgba(212,105,30,.55));
-}
-@keyframes pop-in{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
-*/
-
 .hero-logo{
   margin-bottom: 20px;
   animation: pop-in .7s .1s cubic-bezier(.34,1.56,.64,1) both;
-  filter: drop-shadow(0 12px 32px rgba(212,105,30,0.45)); /* Added a soft glow */
+  filter: drop-shadow(0 12px 32px rgba(212,105,30,0.45));
 }
-
 .hero-logo img {
-  width: 280px; /* Adjust size as needed */
+  width: 280px;
   height: 140px;
   display: block;
 }
+@keyframes pop-in{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
 
 .hero-name{
   font-family:'Fraunces',serif;font-style:italic;font-weight:900;
@@ -112,7 +221,6 @@ body{
 
 @keyframes slide-up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
-/* open badge */
 .open-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(232,169,66,.12);
@@ -125,7 +233,6 @@ body{
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(.8);}}
 .open-text{font-family:'Caveat',cursive;font-size:.95rem;color:var(--cream);letter-spacing:.5px;}
 
-/* scroll cue */
 .scroll-cue{
   position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
   font-family:'Caveat',cursive;font-size:.75rem;letter-spacing:2px;
@@ -141,19 +248,18 @@ body{
   overflow:hidden;background:var(--gold);padding:10px 0;
 }
 .mq-logo {
-  height: 24px;       /* Adjust size to match your text height */
+  height: 24px;
   width: auto;
-  vertical-align: middle; /* Ensures it sits on the same line as text */
-  margin-left:-2px;   /* Adds space between 'Delicious' and the logo */
+  vertical-align: middle;
+  margin-left:-2px;
   display: inline-block;
   position: relative;
   top: -2px;
-  /* filter: brightness(0); */ <--- DELETE OR COMMENT THIS LINE 
 }
 .mq-logo1 {
-  height: 1.2em !important; /* Forces the logo to scale exactly to the text size */
+  height: 1.2em !important;
   width: auto;
-  margin-left: -5px !important; /* Aggressive negative margin to close the gap */
+  margin-left: -5px !important;
   display: inline-block !important;
   vertical-align: middle;
   padding: 0 !important;
@@ -186,7 +292,6 @@ body{
   margin-bottom:32px;color:var(--cream);
 }
 
-/* menu cards */
 .mcard{
   background:var(--dark);
   border-radius:22px;
@@ -199,8 +304,8 @@ body{
 .mcard:active{transform:scale(.98);}
 .mcard-top-bar{height:3.5px;}
 .mcard-top-bar.choco{background:linear-gradient(90deg,#3A1808,#C97B2E,#3A1808);}
-.mcard-top-bar.nutella{background:linear-gradient(90deg,#C97B2E,#E8A942,#C97B2E);}
-.mcard-top-bar.mix{background:linear-gradient(90deg,#3A1808,#E8A942,#3A1808);}
+.mcard-top-bar.caramel{background:linear-gradient(90deg,#C97B2E,#E8A942,#C97B2E);}
+.mcard-top-bar.kunafa{background:linear-gradient(90deg,#3A6B3A,#7EC850,#3A6B3A);}
 
 .mcard-body{
   display:flex;align-items:center;gap:16px;
@@ -230,6 +335,10 @@ body{
   border-radius:10px;padding:2px 9px;
   font-family:'Caveat',cursive;font-size:.7rem;color:var(--gold);letter-spacing:.5px;
 }
+.mcard-tag.green{
+  background:rgba(126,200,80,.1);border-color:rgba(126,200,80,.25);
+  color:#7EC850;
+}
 .mcard-price{
   text-align:right;flex-shrink:0;
 }
@@ -240,23 +349,6 @@ body{
 .price-unit{
   font-size:.68rem;color:rgba(253,241,220,.3);
   letter-spacing:1px;text-transform:uppercase;
-}
-
-/* packaging add-on */
-.pkg-strip{
-  display:flex;align-items:center;gap:12px;
-  background:linear-gradient(135deg,var(--mid),#4A1F00);
-  border-radius:16px;padding:16px 18px;
-  margin-top:6px;
-  border:1px solid rgba(232,169,66,.1);
-}
-.pkg-icon{font-size:1.8rem;flex-shrink:0;}
-.pkg-text h4{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;margin-bottom:2px;}
-.pkg-text p{font-size:.72rem;color:rgba(253,241,220,.4);line-height:1.4;}
-.pkg-price{
-  margin-left:auto;flex-shrink:0;
-  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
-  font-size:1.4rem;color:var(--gold);
 }
 
 /* ── INFO STRIP ── */
@@ -360,7 +452,6 @@ body{
 }
 .ig-btn:active{transform:scale(.97);}
 
-/* hashtag chips */
 .hash-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;}
 .hchip{
   background:rgba(232,169,66,.08);border:1px solid rgba(232,169,66,.15);
@@ -388,7 +479,6 @@ footer{
 .ft-tl{font-family:'Caveat',cursive;font-size:.95rem;color:rgba(253,241,220,.3);letter-spacing:2px;margin-bottom:6px;}
 .ft-loc{font-size:.75rem;color:rgba(253,241,220,.2);letter-spacing:1px;line-height:1.8;}
 
-/* ── UTILS ── */
 .divider-line{height:1px;background:linear-gradient(90deg,transparent,rgba(232,169,66,.1),transparent);margin:0 20px;}
 </style>
 </head>
@@ -396,10 +486,33 @@ footer{
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
+
+  <!-- COUNTDOWN TIMER -->
+  <div class="timer-container">
+    <span class="timer-eyebrow">✦ Karnal's sweetest secret ✦</span>
+    <span class="timer-label" id="timer-label">The Big Reveal In</span>
+    <div id="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-unit">days</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-unit">hrs</span></div>
+      <span class="cd-sep" id="cd-sep2">:</span>
+      <div class="cd-block" id="cd-min-block"><span class="cd-num" id="cd-m">--</span><span class="cd-unit">min</span></div>
+      <span class="cd-sep" id="cd-sep3">:</span>
+      <div class="cd-block" id="cd-sec-block"><span class="cd-num" id="cd-s">--</span><span class="cd-unit">sec</span></div>
+    </div>
+    <span class="timer-tagline" id="timer-tagline">May 14 · 7 PM · Karan Gate</span>
+    <div class="cd-live" id="cd-live">
+      <div class="cd-live-badge">
+        <div class="cd-live-dot"></div>
+        <span class="cd-live-text">We're LIVE — come get your drip!</span>
+      </div>
+      <span class="cd-live-sub">Karan Gate · Open till 11 PM</span>
+    </div>
+  </div>
+
   <div class="drip"></div><div class="drip"></div>
   <div class="drip"></div><div class="drip"></div>
 
-  <!-- Logo SVG -->
   <div class="hero-logo">
     <img src="logo_bg.png" alt="Donut Drip Logo">
   </div>
@@ -415,9 +528,7 @@ footer{
     <div class="open-dot"></div>
     <span class="open-text">Open every-night · 8–11 PM · Karan Gate</span>
   </div>
-  <br>
-  <br>
-  <br>
+  <br><br><br>
   <div class="scroll-cue">
     <span>See our menu</span>
     <div class="scroll-arrow"></div>
@@ -433,86 +544,74 @@ footer{
     <span>Karan Gate, Karnal</span><span class="dot">·</span>
     <span>8–11 PM</span><span class="dot">·</span>
     <span>#catchthedrip</span><span class="dot">·</span>
-    <span><img src="logo_1bg.png" class="mq-logo" alt="Logo"><span class="dot">·</span>
+    <span><img src="logo_1bg.png" class="mq-logo" alt="Logo"></span><span class="dot">·</span>
     <span>Donut Drip</span><span class="dot">·</span>
     <span>Hole-y Delicious</span><span class="dot">·</span>
     <span>Handcrafted Treats</span><span class="dot">·</span>
     <span>Karan Gate, Karnal</span><span class="dot">·</span>
     <span>8–11 PM</span><span class="dot">·</span>
     <span>#catchthedrip</span><span class="dot">·</span>
-    <span><img src="logo_1bg.png" class="mq-logo" alt="Logo"> <span class="dot">·</span>
+    <span><img src="logo_1bg.png" class="mq-logo" alt="Logo"></span><span class="dot">·</span>
   </div>
 </div>
 
 <!-- ═══════════ MENU ═══════════ -->
 <section class="menu-section">
   <div class="sec-label">Tonight's Menu</div>
-  <h2 class="sec-title">Fresh. Glazed.<br/>Two in every tray.</h2>
+  <h2 class="sec-title">Fresh. Glazed.<br/>One in every box.</h2>
 
-  <!-- Chocolate -->
+  <!-- Chocolate Confetti -->
   <div class="mcard">
     <div class="mcard-top-bar choco"></div>
     <div class="mcard-body">
       <div class="mcard-emoji">🍫</div>
       <div class="mcard-info">
         <div class="mcard-name">Chocolate Confetti</div>
-        <div class="mcard-desc">Two chocolate glazed doughnuts<br/>Rainbow confetti · Fresh tonight</div>
-        <div class="mcard-tag">2 in a tray</div>
+        <div class="mcard-desc">Rich chocolate glaze<br/>Rainbow confetti</div>
+        <div class="mcard-tag">1 in a box</div>
       </div>
       <div class="mcard-price">
         <span class="price-rs">₹80</span>
-        <span class="price-unit">per tray</span>
+        <span class="price-unit">per box</span>
       </div>
     </div>
   </div>
 
-  <!-- Nutella -->
+  <!-- Caramel Dream -->
   <div class="mcard">
-    <div class="mcard-top-bar nutella"></div>
+    <div class="mcard-top-bar caramel"></div>
     <div class="mcard-body">
       <div class="mcard-emoji">🍯</div>
       <div class="mcard-info">
-        <div class="mcard-name">Nutella Dream</div>
-        <div class="mcard-desc">Two Nutella drizzled doughnuts<br/>Rainbow confetti · Fan favourite</div>
-        <div class="mcard-tag">2 in a tray</div>
+        <div class="mcard-name">Caramel Dream</div>
+        <div class="mcard-desc">Silky caramel drizzle<br/>Buttery smooth</div>
+        <div class="mcard-tag">1 in a box</div>
       </div>
       <div class="mcard-price">
-        <span class="price-rs">₹100</span>
-        <span class="price-unit">per tray</span>
+        <span class="price-rs">₹80</span>
+        <span class="price-unit">per box</span>
       </div>
     </div>
   </div>
 
-  <!-- Mix -->
+  <!-- The Green Drip -->
   <div class="mcard">
-    <div class="mcard-top-bar mix"></div>
+    <div class="mcard-top-bar kunafa"></div>
     <div class="mcard-body">
-      <div class="mcard-emoji">🎉</div>
+      <div class="mcard-emoji">🌿</div>
       <div class="mcard-info">
-        <div class="mcard-name">The Drip Duo</div>
-        <div class="mcard-desc">One Chocolate + One Nutella<br/>Best of both worlds</div>
-        <div class="mcard-tag">⭐ Best seller</div>
+        <div class="mcard-name">Kunafa Kiss</div>
+        <div class="mcard-desc">Kunafa meets pistachio<br/>Crispy, creamy, unforgettable</div>
+        <div class="mcard-tag">1 in a box</div>
+        <!-- <div class="mcard-tag green">⭐ New drop</div> -->
       </div>
       <div class="mcard-price">
-        <span class="price-rs">₹90</span>
-        <span class="price-unit">per tray</span>
+        <span class="price-rs">₹120</span>
+        <span class="price-unit">per box</span>
       </div>
     </div>
   </div>
 
-
-  <!-- Packaging -->
-  <!-- 
-  <div class="pkg-strip">
-    <div class="pkg-icon">📦</div>
-    <div class="pkg-text">
-      <h4>Gift Packaging</h4>
-      <p>Premium box · Perfect for gifting</p>
-    </div>
-    <div class="pkg-price">+₹5</div>
-  </div>
-  -->
-  
 </section>
 
 <!-- INFO STRIP -->
@@ -546,7 +645,8 @@ footer{
   <h2 class="about-title">Made fresh.<br/>Every day.</h2>
   <p class="about-text">
     Every doughnut at <strong>Donut Drip</strong> is handcrafted the same evening you eat it.
-    Real Nutella. Real chocolate sauce. Rainbow confetti on every single one.
+    Real chocolate sauce. Silky caramel. Kunafa &amp; pistachio that hits different.
+    Rainbow confetti on every single one.
     <br/><br/>
     We believe <strong>good things deserve to drip.</strong>
     Find us at Karan Gate, every evening from 8 PM.
@@ -560,9 +660,9 @@ footer{
   <div style="text-align:center;margin-bottom:20px;">
     <p style="font-family:'Caveat',cursive;font-size:.82rem;letter-spacing:3px;text-transform:uppercase;color:var(--nutella);margin-bottom:6px;">A little note from us</p>
     <h2 style="font-family:'Fraunces',serif;font-weight:900;font-size:1.7rem;color:var(--dark);line-height:1.1;">
-  With love &amp;<br/>
-  <span style="display: inline-flex; align-items: center;">sprinkles<img src="logo_bg.png" class="mq-logo1" alt="Logo"></span>
-</h2>
+      With love &amp;<br/>
+      <span style="display: inline-flex; align-items: center;">sprinkles<img src="logo_bg.png" class="mq-logo1" alt="Logo"></span>
+    </h2>
   </div>
 
   <div class="ty-card">
@@ -634,6 +734,87 @@ footer{
   <p class="ft-tl">Hole-y Delicious · Handcrafted Treats</p>
   <p class="ft-loc">Near Petrol Pump, Karan Gate, Karnal<br/>Open every evening · 8–11 PM<br/>@donutdripkarnal · #catchthedrip</p>
 </footer>
+
+<script>
+// Launch: 14 May 2026, 7:00 PM IST
+// IST = UTC+5:30, so 7 PM IST = 13:30 UTC
+const LAUNCH = new Date('2026-05-14T13:30:00Z');
+
+// How long the store is "live" — 3 hours (8–11 PM)
+const LIVE_DURATION_MS = 3 * 60 * 60 * 1000;
+
+function pad(n){ return String(Math.floor(n)).padStart(2,'0'); }
+
+function tick(){
+  const now = new Date();
+  const diff = LAUNCH - now;
+  const sinceOpen = now - LAUNCH;
+
+  const cdEl      = document.getElementById('countdown');
+  const liveEl    = document.getElementById('cd-live');
+  const labelEl   = document.getElementById('timer-label');
+  const dEl       = document.getElementById('cd-d');
+  const hEl       = document.getElementById('cd-h');
+  const mEl       = document.getElementById('cd-m');
+  const sEl       = document.getElementById('cd-s');
+  const minBlock  = document.getElementById('cd-min-block');
+  const secBlock  = document.getElementById('cd-sec-block');
+  const sep2      = document.getElementById('cd-sep2');
+  const sep3      = document.getElementById('cd-sep3');
+
+  if(diff <= 0 && sinceOpen < LIVE_DURATION_MS){
+    // LIVE state
+    cdEl.style.display       = 'none';
+    liveEl.style.display     = 'flex';
+    labelEl.style.display    = 'none';
+    document.getElementById('timer-tagline').style.display = 'none';
+    document.querySelector('.timer-eyebrow').textContent   = '✦ We are open tonight ✦';
+    return;
+  }
+
+  if(sinceOpen >= LIVE_DURATION_MS){
+    // Night is over — hide timer entirely
+    document.querySelector('.timer-container').style.display='none';
+    return;
+  }
+
+  // Still counting down
+  liveEl.style.display = 'none';
+  cdEl.style.display   = 'flex';
+
+  const totalSecs = Math.floor(diff / 1000);
+  const days  = Math.floor(totalSecs / 86400);
+  const hours = Math.floor((totalSecs % 86400) / 3600);
+  const mins  = Math.floor((totalSecs % 3600) / 60);
+  const secs  = totalSecs % 60;
+
+  if(days >= 1){
+    // Show days + hours only
+    dEl.textContent = pad(days);
+    hEl.textContent = pad(hours);
+    minBlock.style.display  = 'none';
+    secBlock.style.display  = 'none';
+    sep2.style.display      = 'none';
+    sep3.style.display      = 'none';
+    labelEl.textContent     = 'The Big Reveal In';
+  } else {
+    // Show hours : mins : secs
+    dEl.closest('.cd-block').style.display = 'none';
+    document.querySelectorAll('.cd-sep')[0].style.display = 'none';
+    hEl.textContent = pad(hours);
+    minBlock.style.display  = 'flex';
+    secBlock.style.display  = 'flex';
+    sep2.style.display      = 'inline';
+    sep3.style.display      = 'inline';
+    mEl.textContent = pad(mins);
+    sEl.textContent = pad(secs);
+    labelEl.textContent     = 'Tonight is the Night 🍩';
+  }
+}
+
+tick();
+setInterval(tick, 1000);
+</script>
 
 </body>
 </html>
